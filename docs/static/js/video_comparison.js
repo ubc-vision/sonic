@@ -3,15 +3,12 @@
 // http://thenewcode.com/364/Interactive-Before-and-After-Video-Comparison-in-HTML5-Canvas
 // With additional modifications based on: https://jsfiddle.net/7sk5k4gp/13/
 
-// Track initialized videos to prevent duplicate initialization
-var initializedVideos = {};
-
 function playVids(videoId) {
     var videoMerge = document.getElementById(videoId + "Merge");
     var vid = document.getElementById(videoId);
 
-    // Check if already initialized
-    if (initializedVideos[videoId]) {
+    // Check if already initialized using data attribute
+    if (videoMerge.dataset.initialized === 'true') {
         return;
     }
 
@@ -22,10 +19,9 @@ function playVids(videoId) {
 
     var mergeContext = videoMerge.getContext("2d");
 
-    if (vid.readyState > 3) {
-        vid.play();
+    vid.play();
 
-        function trackLocation(e) {
+    function trackLocation(e) {
             // Normalize to [0, 1]
             bcr = videoMerge.getBoundingClientRect();
             position = ((e.pageX - bcr.x) / bcr.width);
@@ -55,7 +51,7 @@ function playVids(videoId) {
         videoMerge.addEventListener("touchend", stopTouching, false);
 
         // Mark as initialized
-        initializedVideos[videoId] = true;
+        videoMerge.dataset.initialized = 'true';
 
         function drawLoop() {
             var colStart = (vidWidth * position).clamp(0.0, vidWidth);
@@ -125,7 +121,6 @@ function playVids(videoId) {
         }
         
         requestAnimationFrame(drawLoop);
-    } 
 }
 
 Number.prototype.clamp = function(min, max) {
@@ -134,6 +129,10 @@ Number.prototype.clamp = function(min, max) {
 
 function resizeAndPlay(element) {
     var cv = document.getElementById(element.id + "Merge");
+
+    // Clear any previous initialization flag to allow re-initialization on page reload
+    cv.dataset.initialized = 'false';
+
     cv.width = element.videoWidth/2;
     cv.height = element.videoHeight;
     element.play();
