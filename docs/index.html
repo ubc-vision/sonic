@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="SONIC: Spectral Optimization of Noise for Inpainting with Consistency"
+    />
+    <meta
+      name="keywords"
+      content="SONIC: Spectral Optimization of Noise for Inpainting with Consistency"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SONIC: Spectral Optimization of Noise for Inpainting with Consistency</title>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+
+      gtag("config", "G-PYVRSFMDRL");
+    </script>
+
+
+    <link rel="stylesheet" href="./static/css/juxtapose.css">
+    <script src="./static/js/juxtapose.min.js"></script>
+    <link rel="stylesheet" href="./static/css/google-fonts.css" />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="./static/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="stylesheet" href="./static/css/video_comparison.css" />
+    <link rel="icon" href="./static/images/favicon.svg" />
+
+    <style>
+      * {
+        font-family: "Noto Sans", sans-serif !important;
+      }
+      /* Hide juxtapose attribution */
+      a.jx-knightlab,
+      div.jx-credit,
+      .jx-knightlab,
+      .jx-credit,
+      div[class*="knightlab"],
+      a[class*="knightlab"],
+      span.juxtapose-name {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+      }
+      /* Lighter footer text */
+      footer.footer .content p {
+        font-weight: 300;
+        color: #999;
+      }
+    </style>
+
+    <script src="./static/js/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/video_comparison.js"></script>
+    <script src="./static/js/index.js"></script>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                SONIC: <u>S</u>pectral <u>O</u>ptimization of <u>N</u>oise<br>
+                for <u>I</u>npainting with <u>C</u>onsistency
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="#">Seungyeon Baek</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Erqun Dong</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Shadan Namazifard</a><sup>1</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Mark J. Matthews</a><sup>2 *</sup>,</span>
+                <span class="author-block">
+                  <a href="#">Kwang Moo Yi</a><sup>1</sup></span>
+              </div>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"><sup>1</sup>The University of British Columbia,</span>
+                <span class="author-block"><sup>2</sup>Google DeepMind</span>
+              </div>
+              <div class="is-size-6 publication-authors" style="margin-top: 0.5rem; color: #666;">
+                <sup>*</sup>Participated in an advisory capacity only.
+              </div>
+              <div class="column has-text-centered" style="margin-top: 1.5rem;">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="./static/pdf/main.pdf" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="#" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-alt"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+                  <span class="link-block">
+                    <a href="https://github.com/ubc-vision/sonic" class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <!-- Header for the Carousel Section -->
+        <img
+          id="Diagram"
+          src="./static/images/sonic_teaser.png"
+          alt="Descriptive Text"
+          style="width: 100%; height: auto; display: block; margin-left: 0;"
+        />
+        <h2 class="carousel-item-caption">
+            We propose a novel training-free method of inpainting that focuses exclusively on the <b>initial seed noise</b>. <b>(Top row)</b> We show the denoising result of an initial seed noise, as we optimize the seed noise using our method. We optimize the seed noise to faithfully regenerate the non-masked regions of the input image, so as to obtain more consistent inpainting results. <b>(Bottom row)</b> Inpainting results of competing methods, with our final result on the right.
+        </h2>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="carousel-section-header">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+              We propose a novel training-free method for inpainting with 
+              off-the-shelf text-to-image models. While guidance-based methods 
+              in theory allow generic models to be used for inverse problems such 
+              as inpainting, in practice, their effectiveness is limited, leading 
+              to the necessity of specialized inpainting-specific models. In this 
+              work, we argue that the missing ingredient for training-free inpainting 
+              is the optimization (guidance) of the initial seed noise. We propose to 
+              optimize the initial seed noise to approximately match the unmasked parts 
+              of the data—with as few as a few tens of optimization steps. We then 
+              apply conventional training-free inpainting methods on top of our 
+              optimized initial seed noise. Critically, we propose two core ideas 
+              to effectively implement this idea: 
+              <b>(i) to avoid the costly unrolling required to relate the initial noise 
+              and the generated outcome, we perform <i>linear approximation</i>;</b> and <b>(ii) to 
+              stabilize the optimization, we optimize the initial seed noise in the 
+              <i>spectral domain</i>.</b> We demonstrate the effectiveness of our method on various 
+              inpainting tasks, outperforming the state of the art.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <!-- Header for the Carousel Section -->
+        <h2 class="carousel-section-header">Overview</h2>
+        <img
+          id="teaser"
+          src="./static/images/SONIC_Pipeline.jpg"
+          alt="Descriptive Text"
+          style="width: 100%; height: auto"
+        />
+        <h2 class="carousel-item-caption">
+        <p>
+          <strong>Method overview.</strong>
+          We optimize the initial seed noise in the spectral domain 
+          <strong>X<sub>T</sub></strong>, starting from a random noise 
+          <strong>x<sub>T</sub></strong>, such that our denoised latent matches 
+          the masked observation <strong>y</strong> in the latent space.
+          To allow partial observations to be encoded, we use nearest-pixel
+          filling before passing it into the encoder. We then compute the
+          masked mean square error in the latent space, comparing it with a 
+          fully denoised latent, and update 
+          <strong>X<sub>T</sub></strong> accordingly.
+          Importantly, we linearize the entire <strong>T</strong>-step
+          denoising process, essentially disconnecting the gradient flow
+          passing through it. This allows us to optimize the initial seed noise 
+          <strong>X<sub>T</sub></strong> without back-propagating through 
+          the denoiser.
+        </p>
+        </h2>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="carousel-section-header">Optimizing the Initial Seed Noise</h2>
+        <!-- Localization. -->
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <!-- Interpolating. -->
+            <div class="columns is-vcentered interpolation-panel">
+              <div class="column interpolation-video-column">
+                <div id="interpolation-image-wrapper">Loading...</div>
+                <div class="slider-container">
+                  <span class="slider-label-left">Initialization</span>
+                  <input
+                    class="slider is-fullwidth is-large is-info"
+                    id="interpolation-slider"
+                    step="1"
+                    min="0"
+                    max="100"
+                    value="0"
+                    type="range"
+                  />
+                  <span class="slider-label-right">Optimization</span>
+                </div>
+              </div>
+            </div>
+            <div class="content has-text-justified">
+              <p>
+                This interactive slider provides a visualization of
+                optimizing the initial seed noise in the spectral domain.
+                The image progressively changes to match the observed regions during the optimization process.
+              </p>
+            </div>
+            <!--/ Interpolating. -->
+          </div>
+        </div>
+        <!--/ Animation. -->
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container spatial-spectral-section">
+          <div class="columns is-centered">
+            <div class="column is-full">
+              <!-- Header for the Spatial vs Spectral Section -->
+              <h2 class="carousel-section-header">Spatial vs. Spectral Optimization</h2>
+              <!-- Paragraph Description -->
+              <p class="carousel-section-description">
+                We compare optimizing the initial noise in the <strong>spatial</strong> domain versus our proposed <strong>spectral</strong> domain optimization.
+                Spatial optimization is less reliable and struggles to converge effectively, while our spectral approach (optimizing in the FFT domain) achieves stable and superior convergence.
+                Below we show the loss curves and corresponding <b>x₀</b> reconstructions demonstrating this difference.
+              </p>
+
+              <!-- Learning Rate 0.05 / 3.0 -->
+              <div class="columns is-gapless is-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+                <div class="column is-3 has-text-centered">
+                  <img src="static/loss_curves/spatial_0.05.gif" alt="Spatial Loss 0.05" style="width: 100%;">
+                </div>
+                <div class="column is-3 has-text-centered">
+                  <div style="padding: 0.25rem; margin-top: 0.25rem;">
+                    <img src="static/x0_reconstructions/x0_hat_x_0_hat_spatial_0.05.gif" alt="Spatial Reconstruction 0.05" style="width: 80%;">
+                  </div>
+                </div>
+                <div class="column is-3 has-text-centered">
+                  <img src="static/loss_curves/spectral_3.0.gif" alt="Spectral Loss 3.0" style="width: 100%;">
+                </div>
+                <div class="column is-3 has-text-centered">
+                  <div style="padding: 0.25rem; margin-top: 0.25rem;">
+                    <img src="static/x0_reconstructions/x0_hat_x_0_hat_spectral_3.0.gif" alt="Spectral Reconstruction 3.0" style="width: 80%;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <!-- Header for the Carousel Section -->
+          <h2 class="carousel-section-header">Qualitative Comparisons</h2>
+          <!-- Paragraph Description -->
+          <p class="carousel-section-description" style="text-align: center;">
+            For additional qualitative comparisons, please refer to the <a href="./static/pdf/main.pdf" style="color: #3273dc; text-decoration: none; font-weight: bold;"><strong>Supplementary Materials</strong></a>.
+          </p>
+          <div style="display: flex; gap: 20px; justify-content: center;">
+            <div style="width: 300px; text-align: center; position: relative;">
+              <div class="juxtapose" style="width: 300px;">
+                <img src="static/images/comparisons/ffhq/00363_brushnet.jpg" />
+                <img src="static/images/comparisons/ffhq/00363_ours.jpg" />
+              </div>
+              <div class="video-comparison-caption">
+                FFHQ
+              </div>
+            </div>
+            <div style="width: 300px; text-align: center; position: relative;">
+              <div class="juxtapose" style="width: 300px;">
+                <img src="static/images/comparisons/div2k/00561_flair.jpg" />
+                <img src="static/images/comparisons/div2k/00560_ours.jpg" />
+              </div>
+              <div class="video-comparison-caption">
+                DIV2K
+              </div>
+            </div>
+            <div style="width: 300px; text-align: center; position: relative;">
+              <div class="juxtapose" style="width: 300px;">
+                <img src="static/images/comparisons/brushbench/000000304_flowdps.jpg" />
+                <img src="static/images/comparisons/brushbench/00304_ours.jpg" />
+              </div>
+              <div class="video-comparison-caption">
+                BrushBench
+              </div>
+            </div>
+          </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <!-- Header for the Video Comparison Section -->
+          <h2 class="carousel-section-header">Additional Applications</h2>
+          <!-- Paragraph Description -->
+          <p class="carousel-section-description">
+            Our initial noise optimization method can also be applied to text-to-video models for video inpainting tasks. Below, we compare the output from our method prepended to Wan2.1<sup><a href="#ref-wan21" style="color: #3273dc; text-decoration: none;">[1]</a></sup> against ProPainter<sup><a href="#ref-propainter" style="color: #3273dc; text-decoration: none;">[2]</a></sup>, a video inpainting baseline. To compare the results, please move your cursor left and right.
+          </p>
+          <br>
+          <!-- Masked Ground Truth Video -->
+          <div class="masked-gt-container" style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto; width: 100%;">
+            <video class="masked-gt-video" muted loop autoplay playsinline style="width: 499px; max-width: 90%; height: auto; display: block; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background: #000;">
+              <source src="static/videos/masked_gt.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+            <div class="masked-gt-caption" style="text-align: center; margin-top: 0.75rem; color: #666;">Masked Ground Truth</div>
+          </div>
+
+          <!-- First Video Comparison Container -->
+          <div class="video-comparison-container">
+            <div class="video-comparison">
+              <div class="video-loading">Loading video</div>
+              <video id="compVideo1" onloadeddata="resizeAndPlay(this)" muted loop playsinline preload="auto">
+                <source src="static/videos/combined_comparison.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+              <canvas id="compVideo1Merge"></canvas>
+            </div>
+          </div>
+          <div class="video-comparison-caption">Inpainted Output</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column is-two-thirds">
+              <!-- Header for the Carousel Section -->
+              <h2 class="carousel-section-header">Prompts</h2>
+              <!-- Paragraph Description -->
+              <p class="carousel-section-description">
+              To facilitate reproduction, we provide prompts used for all experiments. We provide the same prompts to all methods.
+              </p>
+              <div class="has-text-centered">
+                <br>
+              <div class="button-row">
+                <div class="spacer"></div>
+
+                <a href="static/prompts/ffhq_prompt.json"
+                  class="button is-link is-medium">FFHQ Prompts</a>
+
+                <div class="spacer"></div>
+
+                <a href="static/prompts/div2k_prompt.json"
+                  class="button is-link is-medium">DIV2K Prompts</a>
+
+                <div class="spacer"></div>
+              </div>
+                <br>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column">
+            <div class="content">
+              <h3 style="font-weight: 300; margin-bottom: 1rem; color: #999;">References</h3>
+              <p style="font-size: 0.9em; line-height: 1.6;">
+                <span id="ref-wan21">[1]</span> Wan, T., Wang, A., Ai, B., Wen, B., Mao, C., Xie, C. W., ... & Liu, Z. (2025). Wan: Open and advanced large-scale video generative models. arXiv preprint arXiv:2503.20314.<br>
+                <span id="ref-propainter">[2]</span> Zhou, S., Li, C., Chan, K. C., & Loy, C. C. (2023). Propainter: Improving propagation and transformer for video inpainting. In Proceedings of the IEEE/CVF international conference on computer vision (pp. 10477-10486).
+              </p>
+              <br>
+              <p>
+                This page is modified from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.<br>
+                Image comparisons use <a href="https://juxtapose.knightlab.com">JuxtaposeJS</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="./static/js/slider.js"></script>
+    <script src="./static/js/video_comparison.js"></script>
+    <script src="static/js/index.js"></script>
+    <script>
+      // Remove juxtapose attribution after page loads
+      function removeJuxtaposeAttribution() {
+        const attributions = document.querySelectorAll('a[class*="knightlab"], .jx-knightlab, .jx-credit, span[class*="juxtapose"]');
+        attributions.forEach(el => el.remove());
+
+        // Also check for any text containing "juxtapose" but exclude footer
+        const allElements = document.querySelectorAll('*:not(.footer):not(.footer *)');
+        allElements.forEach(el => {
+          if (el.textContent && el.textContent.toLowerCase().includes('juxtapose') && el.textContent.length < 20) {
+            el.remove();
+          }
+        });
+      }
+
+      // Run immediately and after a delay to catch dynamically added elements
+      document.addEventListener('DOMContentLoaded', removeJuxtaposeAttribution);
+      setTimeout(removeJuxtaposeAttribution, 500);
+      setTimeout(removeJuxtaposeAttribution, 1000);
+      setTimeout(removeJuxtaposeAttribution, 2000);
+    </script>
+  </body>
+</html>

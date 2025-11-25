@@ -1,5 +1,7 @@
 # SONIC: Spectral Optimization of Noise for Inpainting with Consistency
 
+[![button](https://img.shields.io/badge/Project%20Website-orange?style=for-the-badge)](https://ubc-vision.github.io/sonic/)
+
 <span class="author-block">
   <a href="">Seungyeon Baek</a>,
 </span>

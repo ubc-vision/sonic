@@ -1,0 +1,459 @@
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.slider-container-horizontal {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+}
+
+.slider-container-horizontal .jx,
+.slider-container-horizontal .juxtapose {
+  display: inline-block !important;
+  width: 30% !important;
+  height: 300px !important;
+  vertical-align: top !important;
+  margin: 0 1.5% !important;
+  white-space: normal !important;
+}
+
+.slider-container-horizontal .juxtapose img {
+  max-height: 300px !important;
+  object-fit: cover !important;
+}
+
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+}
+
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.carousel-dots {
+  display: none;
+}
+
+.dnerf {
+  font-variant: small-caps;
+}
+
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-title {
+}
+
+.publication-banner {
+  max-height: parent;
+}
+
+.publication-banner video {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  object-fit: fit;
+}
+
+.publication-header .hero-body {
+}
+
+.publication-title {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-authors {
+  font-family: "Google Sans", sans-serif;
+}
+
+.publication-venue {
+  color: #555;
+  width: fit-content;
+  font-weight: bold;
+}
+
+.publication-awards {
+  color: #ff3860;
+  width: fit-content;
+  font-weight: bolder;
+}
+
+.publication-authors {
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.publication-banner img {
+}
+
+.publication-authors {
+  /*color: #4286f4;*/
+}
+
+.publication-video {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+
+  overflow: hidden;
+  border-radius: 10px !important;
+}
+
+.publication-video iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.publication-body img {
+}
+
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .carousel-item {
+  display: flex;
+  justify-content: space-around; /* Adjust as needed */
+}
+
+.carousel-item .items-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Center items horizontally */
+  align-items: center; /* Align items vertically */
+}
+
+.carousel-item .caption {
+  display: block;
+  margin-top: 10px; /* Space between images and caption */
+  text-align: center; /* Center the caption text */
+  /* Other caption styles */
+}
+
+.results-carousel .item {
+  width: calc(16.67% - 10px); /* Adjust width for 5 items */
+  /* Other styles... */
+}
+
+#two-row-carousel .carousel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#two-row-carousel .carousel-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px; /* Spacing between rows */
+}
+
+#two-row-carousel .carousel-item .item {
+  flex: 1 0 calc(16.67% - 10px); /* Flex grow, flex shrink, and basis */
+  margin: 5px;
+}
+
+#two-row-carousel .carousel-item .item img {
+  width: 100%;
+  height: auto;
+}
+
+#two-row-carousel .carousel-row img {
+  width: calc(16.67% - 10px); /* Adjust the 10px based on your margin/padding */
+  margin: 5px; /* Adjust based on your design */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.carousel-caption p {
+  text-align: center;
+  margin-top: 10px; /* Adjust as needed */
+  margin-bottom: 10px; /* Adjust as needed */
+  font-size: 16px; /* Adjust as needed */
+  color: #333; /* Adjust as needed */
+}
+
+#two-row-carousel {
+  width: 100vw; /* This will make the carousel take the full viewport width */
+  max-width: 100%; /* To ensure it doesn't overflow */
+  overflow: hidden; /* In case of horizontal overflow */
+}
+
+.interpolation-panel {
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+
+.interpolation-panel .interpolation-image {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.interpolation-video-column {
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+.interpolation-panel .slider {
+  margin: 0 !important;
+}
+
+#interpolation-image-wrapper {
+  width: 100%;
+}
+#interpolation-image-wrapper img {
+  border-radius: 5px;
+}
+
+.hero.teaser {
+  flex: 1; /* Each section takes equal width */
+  text-align: center; /* Center the text */
+}
+
+.side-by-side-videos {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Take the full width of .videos-container */
+}
+
+.videos-container {
+  width: 90%; /* Set width to 70% of the parent container */
+  margin: 0 auto; /* Center the container */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.video-container {
+  width: calc(
+    33.33% - 10px
+  ); /* Adjusted for 3 videos side by side, accounting for 5px margin */
+  margin-right: 5px; /* Spacing between videos */
+  flex: 0 0 auto; /* Prevents flex items from growing or shrinking */
+  margin-top: 20px; /* Adjust as needed */
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+.video-caption {
+  width: 100%; /* Make caption take full width of .videos-container */
+  text-align: center;
+  margin-top: -20px; /* Adjust as needed */
+  margin-bottom: 20px; /* Adjust as needed */
+}
+
+.video-container:last-child {
+  margin-right: 0; /* Remove margin for the last video container */
+}
+
+.video-container video {
+  width: 100%; /* Make video take full width of its container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+video {
+  width: 80%; /* Make video take full width of its container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+.caption {
+  text-align: center;
+  padding: 5px;
+  margin-top: -10px; /* Adjust as needed */
+}
+
+.subtitle {
+  text-align: justify !important;
+}
+
+/* Adjust the container if needed */
+.hero-body .container {
+  width: 100%; /* Full width */
+  max-width: 100%; /* Prevent exceeding the viewport width */
+  padding: 0; /* Remove padding */
+  margin: 0 auto; /* Center the container, if needed */
+}
+
+.row-caption {
+  text-align: center;
+  margin-top: -10px; /* Adjust as needed */
+  margin-bottom: 10px; /* Adjust as needed */
+  font-size: 14px; /* Adjust as needed */
+  color: #333; /* Adjust as needed */
+  /* Add any additional styling as needed */
+}
+
+.carousel-item-caption {
+  text-align: justify;
+  margin-top: 10px; /* Space between images and caption */
+  font-size: 16px; /* Adjust as needed */
+  color: #333; /* Adjust as needed */
+  /* Any additional styling as needed */
+}
+
+/* Specific styling for qualitative comparison caption */
+.hero.is-small .container .carousel-item-caption {
+  width: 66%;
+  margin: 10px auto 0 auto;
+}
+
+.carousel-section-header {
+  text-align: center;
+  font-size: 24px; /* Adjust font size as needed */
+  margin-bottom: 10px; /* Spacing between the header and paragraph */
+  /* Additional styling as needed */
+}
+
+.carousel-section-description {
+  text-align: justify;
+  margin-bottom: 20px; /* Spacing between the paragraph and carousel */
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 83.33333%; /* Same as .is-four-fifths column for consistency */
+  /* Additional styling as needed */
+}
+
+.column.has-text-centered .centered-text {
+  text-align: center !important;
+}
+
+
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
+
+.slider-label-left, .slider-label-right {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.slider-label-left {
+  margin-right: 1rem;
+}
+
+.slider-label-right {
+  margin-left: 1rem;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.image-pair {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-pair img {
+  width: 50%;
+  height: auto;
+}
+
+.button-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1; /* equal flexible spacing sections */
+}
+
+.button-row a {
+  flex: 0 0 auto; /* buttons keep natural width */
+}
+
+/* Reduce gaps between video columns */
+.spatial-spectral-section .columns.is-gapless {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.spatial-spectral-section .columns.is-gapless > .column {
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+}
+
+/* Add larger gap between spatial (columns 1,2) and spectral (columns 3,4) sections */
+.spatial-spectral-section .column:nth-child(3) {
+  margin-left: 4rem !important;
+}
+
+/* Specifically reduce padding for reconstruction columns and make videos smaller */
+.spatial-spectral-section .column:nth-child(2) div,
+.spatial-spectral-section .column:nth-child(4) div {
+  padding: 0.1rem !important;
+  margin-top: 0.1rem !important;
+}
+
+.spatial-spectral-section .column:nth-child(2) img,
+.spatial-spectral-section .column:nth-child(4) img {
+  width: 90% !important;
+}
+
+/* Custom labels for juxtapose sliders */
+.juxtapose-label-left,
+.juxtapose-label-right {
+  position: absolute;
+  top: 10px;
+  z-index: 20;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+  font-weight: normal;
+  color: white;
+  text-shadow:
+    1px 1px 3px rgba(0, 0, 0, 0.9),
+    -1px -1px 3px rgba(0, 0, 0, 0.9),
+    1px -1px 3px rgba(0, 0, 0, 0.9),
+    -1px 1px 3px rgba(0, 0, 0, 0.9);
+  pointer-events: none;
+}
+
+.juxtapose-label-left {
+  left: 10px;
+}
+
+.juxtapose-label-right {
+  right: 10px;
+}
+
+/* Consistent horizontal margins for all sections - 75% of screen width */
+.container.is-max-desktop,
+.spatial-spectral-section,
+.hero .container {
+  max-width: 75vw !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}

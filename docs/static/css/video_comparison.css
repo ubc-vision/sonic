@@ -1,0 +1,106 @@
+/* Video comparison styles */
+.video-comparison-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.video-comparison {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.video-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 18px;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px 40px;
+    border-radius: 8px;
+}
+
+.video-loading::after {
+    content: '...';
+    animation: dots 1.5s steps(4, end) infinite;
+}
+
+@keyframes dots {
+    0%, 20% { content: '.'; }
+    40% { content: '..'; }
+    60%, 100% { content: '...'; }
+}
+
+.video-comparison canvas {
+    display: block;
+    cursor: ew-resize;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.video-comparison video {
+    display: none; /* Hidden by the JS, but fallback */
+}
+
+.video-comparison-caption {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+}
+
+/* Masked Ground Truth styles */
+.masked-gt-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 2rem auto 2rem;
+    width: 100%;
+    min-height: 50px;
+}
+
+.masked-gt-video {
+    width: 499px; /* 60% of 832px */
+    max-width: 90%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: block;
+    background-color: #000;
+}
+
+.masked-gt-caption {
+    text-align: center;
+    margin-top: 0.75rem;
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    display: block;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .video-comparison canvas {
+        width: 100%;
+        height: auto;
+    }
+
+    .masked-gt-video {
+        width: 60%;
+        max-width: 499px;
+    }
+}
