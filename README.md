@@ -145,6 +145,7 @@ python metrics/perceptual_metrics.py \
 - ✅ Inpainting code with sample images and prompts
 - ✅ Environment setup guide
 - ✅ Metrics code
+- ⬜ (Experimental) Wan 2.1 code update
 
 ## Citation
 ```
