@@ -617,18 +617,12 @@ video {
 
   .juxtapose-comparison-item {
     width: 100% !important;
-    max-width: 400px !important;
+    max-width: 100% !important;
   }
 
   .juxtapose-comparison-item .juxtapose {
     width: 100% !important;
     max-width: 100% !important;
-  }
-
-  .juxtapose {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 auto !important;
   }
 
   /* Video comparisons */
@@ -637,8 +631,20 @@ video {
     max-width: 100% !important;
   }
 
+  .video-comparison-container {
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .video-comparison {
+    width: 100%;
+    max-width: 100%;
+  }
+
   .video-comparison canvas {
-    max-width: 90% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
   }
 
   /* Button row */

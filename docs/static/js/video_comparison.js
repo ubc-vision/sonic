@@ -135,6 +135,18 @@ function resizeAndPlay(element) {
 
     cv.width = element.videoWidth/2;
     cv.height = element.videoHeight;
+
+    // Ensure video plays
+    var playPromise = element.play();
+    if (playPromise !== undefined) {
+        playPromise.catch(function(error) {
+            // Autoplay was prevented, ensure it's muted and try again
+            console.log('Autoplay prevented, retrying muted');
+            element.muted = true;
+            element.play();
+        });
+    }
+
     element.style.height = "0px";  // Hide video without stopping it
 
     // Remove loading indicator

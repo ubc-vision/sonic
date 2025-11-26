@@ -94,13 +94,26 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .video-comparison canvas {
+    .video-comparison-container {
         width: 100%;
-        height: auto;
+        max-width: 100%;
+        padding: 0 0.5rem;
+    }
+
+    .video-comparison {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .video-comparison canvas {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        display: block;
     }
 
     .masked-gt-video {
-        width: 60%;
-        max-width: 499px;
+        width: 90%;
+        max-width: 100%;
     }
 }
