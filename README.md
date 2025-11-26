@@ -146,3 +146,15 @@ python metrics/perceptual_metrics.py \
 - ✅ Environment setup guide
 - ✅ Metrics code
 
+## Citation
+```
+@misc{baek2025sonicspectraloptimizationnoise,
+      title={SONIC: Spectral Optimization of Noise for Inpainting with Consistency}, 
+      author={Seungyeon Baek and Erqun Dong and Shadan Namazifard and Mark J. Matthews and Kwang Moo Yi},
+      year={2025},
+      eprint={2511.19985},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2511.19985}, 
+}
+```
