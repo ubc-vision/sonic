@@ -136,14 +136,26 @@ function resizeAndPlay(element) {
     cv.width = element.videoWidth/2;
     cv.height = element.videoHeight;
 
-    // Ensure video plays
+    // Safari iOS requires explicit muted attribute and playsinline
+    element.muted = true;
+    element.setAttribute('muted', '');
+    element.setAttribute('playsinline', '');
+
+    // Ensure video plays with proper error handling
     var playPromise = element.play();
     if (playPromise !== undefined) {
-        playPromise.catch(function(error) {
-            // Autoplay was prevented, ensure it's muted and try again
-            console.log('Autoplay prevented, retrying muted');
-            element.muted = true;
-            element.play();
+        playPromise.then(function() {
+            // Autoplay started successfully
+            console.log('Video autoplay started');
+        }).catch(function(error) {
+            // Autoplay was prevented
+            console.log('Autoplay prevented:', error);
+            // Try one more time after a short delay
+            setTimeout(function() {
+                element.play().catch(function(e) {
+                    console.log('Second play attempt failed:', e);
+                });
+            }, 100);
         });
     }
 
@@ -157,3 +169,39 @@ function resizeAndPlay(element) {
 
     playVids(element.id);
 }
+
+// Add a user interaction fallback for Safari
+document.addEventListener('DOMContentLoaded', function() {
+    var compVideo = document.getElementById('compVideo1');
+    var maskedVideo = document.querySelector('.masked-gt-video');
+
+    // Ensure both videos are set up for Safari
+    var videos = [compVideo, maskedVideo].filter(function(v) { return v !== null; });
+
+    videos.forEach(function(video) {
+        if (video) {
+            video.muted = true;
+            video.setAttribute('muted', '');
+            video.setAttribute('playsinline', '');
+        }
+    });
+
+    // Try to play on any user interaction if autoplay failed
+    var playOnInteraction = function() {
+        videos.forEach(function(video) {
+            if (video && video.paused) {
+                video.play().catch(function(e) {
+                    console.log('Play on interaction failed:', e);
+                });
+            }
+        });
+        // Remove listeners after first successful interaction
+        document.removeEventListener('touchstart', playOnInteraction);
+        document.removeEventListener('click', playOnInteraction);
+        document.removeEventListener('scroll', playOnInteraction);
+    };
+
+    document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
+    document.addEventListener('click', playOnInteraction, { once: true });
+    document.addEventListener('scroll', playOnInteraction, { once: true, passive: true });
+});
