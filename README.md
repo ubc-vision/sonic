@@ -23,5 +23,28 @@
 
 <hr>
 
+## Inpainting Example
+Given a nearest-pixel inpainted image (left) and its corresponding prompt, we can inpaint the image via noise optimization.
+
+<table>
+  <tr>
+    <td align="center">Input</td>
+    <td align="center">Inpainted Output</td>
+  </tr>
+  <tr>
+    <td><img src="samples/FFHQ/00064.png" width="300"/></td>
+    <td><img src="inpaint_output_samples/FFHQ/inpainted_00064.png" width="300"/></td>
+  </tr>
+</table>
+
+```
+"A young man with short black hair styled upward, dark brown eyes, and fair skin with light stubble. He has well-defined eyebrows and is wearing a black collar or shirt. The background is a clean white."
+```
+
+<hr>
+
 ## Code Release
-Code coming by Nov 26, 2025! 😊
+- <input type="checkbox" checked> Inpainting code with sample images and prompts
+- <input type="checkbox"> Environment setup guide
+- <input type="checkbox"> Metrics code from FLAIR and BrushNet
+
