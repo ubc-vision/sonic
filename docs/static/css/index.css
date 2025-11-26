@@ -615,15 +615,7 @@ video {
     align-items: center;
   }
 
-  .juxtapose-comparison-item {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-
-  .juxtapose-comparison-item .juxtapose {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
+  /* Let juxtapose handle its own sizing */
 
   /* Video comparisons */
   .masked-gt-video {
