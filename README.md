@@ -58,13 +58,22 @@ cd sonic
 Install PyTorch with CUDA support. Visit [https://pytorch.org](https://pytorch.org) for installation instructions.
 
 3. **Install required packages**
+
+For inpainting only:
 ```bash
 pip install diffusers transformers accelerate pillow numpy
 ```
 
+For metrics evaluation (optional):
+```bash
+pip install torchmetrics torchvision tqdm pandas open_clip_torch hpsv2 image-reward
+```
+
 ## Usage
 
-Run the inpainting script with the following command:
+### Option 1: Using sample datasets
+
+Run the inpainting script with predefined datasets:
 
 ```bash
 python sonic_inpaint.py \
@@ -76,18 +85,20 @@ python sonic_inpaint.py \
     --learning_rate 3.0
 ```
 
-### Arguments
+### Option 2: Using custom images
 
-- `--dataset_name`: Dataset name (`BrushBench`, `DIV2K`, or `FFHQ`) [required]
-- `--image_index`: Image index/name (e.g., `000000069` for BrushBench, `00088` for DIV2K/FFHQ) [required]
-- `--image_path`: Path to input image (optional, auto-constructed if not provided)
-- `--mask_path`: Path to inpainting mask (optional, auto-constructed if not provided)
-- `--prompt`: Text prompt for inpainting (optional, read from txt file if not provided)
-- `--num_iterations`: Number of optimization iterations (default: 20)
-- `--step_nums`: Number of steps for ODE solver (default: 20)
-- `--CFG_scale`: CFG scale for velocity prediction (default: 2.0)
-- `--learning_rate`: Learning rate for optimization (default: 3.0)
-- `--seed`: Random seed for reproducibility (default: 200)
+Run the inpainting script with custom images and prompts:
+
+```bash
+python sonic_inpaint.py \
+    --image_path /path/to/image.png \
+    --mask_path /path/to/mask.png \
+    --prompt "Your text prompt here" \
+    --num_iterations 20 \
+    --step_nums 20 \
+    --CFG_scale 2.0 \
+    --learning_rate 3.0
+```
 
 ### Output
 
@@ -97,8 +108,41 @@ Results are saved to `inpaint_results/{dataset_name}_{image_name}_steps{step_num
 - `x_0_hat/` - Predicted clean images during optimization
 - `inpainted_output/inpainted.png` - Final inpainted result
 
+## Metrics Evaluation
+
+### Reconstruction Metrics (PSNR, LPIPS, SSIM, FID)
+
+Evaluate inpainting results using reconstruction metrics:
+
+```bash
+python metrics/reconstruction_metrics.py \
+    --folder_path /path/to/inpainted/images \
+    --gt_folder_path /path/to/ground/truth/images \
+    --resolution 1024
+```
+
+**Output:**
+- `metrics_results/reconstruction_metrics_{timestamp}.txt` - Detailed metrics with standard deviations
+- `metrics_results/reconstruction_metrics_log.csv` - Global CSV log of all runs
+
+### Perceptual Quality Metrics (Image Reward, HPS v2.1, Aesthetic Score, CLIP Similarity)
+
+Evaluate inpainting results using prompt-based quality metrics:
+
+```bash
+python metrics/perceptual_metrics.py \
+    --folder_path /path/to/inpainted/images \
+    --prompts_json /path/to/prompts.json \
+    --resolution 1024
+```
+
+**Output:**
+- `metrics_results/perceptual_metrics_summary_{timestamp}.csv` - Summary of averaged metrics
+- `metrics_results/perceptual_metrics_detailed_{timestamp}.csv` - Per-image detailed results
+- `metrics_results/perceptual_metrics_log.csv` - Global CSV log of all runs
+
 ## Code Release
 - ✅ Inpainting code with sample images and prompts
 - ✅ Environment setup guide
-- ⬜ Metrics code from FLAIR and BrushNet
+- ✅ Metrics code
 

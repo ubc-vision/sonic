@@ -11,8 +11,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser("Spectral Optimization of Noise for Inpainting with Consistency")
     parser.add_argument("--seed", default=200, type=int, help="Random seed for reproducibility")
     parser.add_argument("--CFG_scale", type=float, default=2.0, help="CFG scale for velocity prediction")
-    parser.add_argument("--dataset_name", type=str, required=True, help="Dataset name (BrushBench, DIV2K, or FFHQ)")
-    parser.add_argument("--image_index", type=str, required=True, help="Image index/name (e.g., '000000069' for BrushBench, '00088' for DIV2K/FFHQ)")
+    parser.add_argument("--dataset_name", type=str, default=None, help="Dataset name (BrushBench, DIV2K, or FFHQ)")
+    parser.add_argument("--image_index", type=str, default=None, help="Image index/name (e.g., '000000069' for BrushBench, '00088' for DIV2K/FFHQ)")
     parser.add_argument("--image_path", type=str, default=None, help="Path to the input image (optional, auto-constructed if not provided)")
     parser.add_argument("--mask_path", type=str, default=None, help="Path to the inpainting mask (optional, auto-constructed if not provided)")
     parser.add_argument("--prompt", type=str, default=None, help="Text prompt for inpainting (optional, read from txt file if not provided)")
@@ -21,23 +21,33 @@ if __name__ == '__main__':
     parser.add_argument("--learning_rate", type=float, default=3.0, help="Learning rate for optimization")
     args = parser.parse_args()
 
-    image_ext = "jpg" if args.dataset_name == "BrushBench" else "png"
+    # Auto-construct paths if dataset_name and image_index are provided
+    if args.dataset_name is not None and args.image_index is not None:
+        image_ext = "jpg" if args.dataset_name == "BrushBench" else "png"
 
+        if args.image_path is None:
+            args.image_path = f"samples/{args.dataset_name}/{args.image_index}.{image_ext}"
+
+        if args.mask_path is None:
+            if args.dataset_name == "BrushBench":
+                args.mask_path = f"samples/{args.dataset_name}/mask_images/{args.image_index}.png"
+            else:
+                args.mask_path = f"samples/{args.dataset_name}/{args.image_index}_mask.png"
+
+        if args.prompt is None:
+            prompt_file = f"samples/{args.dataset_name}/{args.image_index}_prompt.txt"
+            if not os.path.exists(prompt_file):
+                raise FileNotFoundError(f"Prompt file not found: {prompt_file}")
+            with open(prompt_file, "r") as f:
+                args.prompt = f.read().strip().strip('"')
+
+    # Validate required arguments
     if args.image_path is None:
-        args.image_path = f"samples/{args.dataset_name}/{args.image_index}.{image_ext}"
-
+        raise ValueError("Either provide --dataset_name and --image_index, or specify --image_path directly")
     if args.mask_path is None:
-        if args.dataset_name == "BrushBench":
-            args.mask_path = f"samples/{args.dataset_name}/mask_images/{args.image_index}.png"
-        else:
-            args.mask_path = f"samples/{args.dataset_name}/{args.image_index}_mask.png"
-
+        raise ValueError("Either provide --dataset_name and --image_index, or specify --mask_path directly")
     if args.prompt is None:
-        prompt_file = f"samples/{args.dataset_name}/{args.image_index}_prompt.txt"
-        if not os.path.exists(prompt_file):
-            raise FileNotFoundError(f"Prompt file not found: {prompt_file}")
-        with open(prompt_file, "r") as f:
-            args.prompt = f.read().strip().strip('"')
+        raise ValueError("Either provide --dataset_name and --image_index, or specify --prompt directly")
 
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     print(f"Using device: {device}")
@@ -53,7 +63,10 @@ if __name__ == '__main__':
     torch_dtype = torch.float16
     pipe = StableDiffusion3Pipeline.from_pretrained(model_path, torch_dtype=torch_dtype).to(device)
     image_name = os.path.splitext(os.path.basename(args.image_path))[0]
-    save_folder = os.path.join("inpaint_results", f"{args.dataset_name}_{image_name}_steps{args.step_nums}_iter{args.num_iterations}")
+    if args.dataset_name is not None:
+        save_folder = os.path.join("inpaint_results", f"{args.dataset_name}_{image_name}_steps{args.step_nums}_iter{args.num_iterations}")
+    else:
+        save_folder = os.path.join("inpaint_results", f"{image_name}_steps{args.step_nums}_iter{args.num_iterations}")
     os.makedirs(save_folder, exist_ok=True)
     print(f"Results saved to: {save_folder}")
     epsilon_path = os.path.join(save_folder, "epsilon")
@@ -67,7 +80,7 @@ if __name__ == '__main__':
     image = image.resize((image_resolution, image_resolution))
     original_target_image = image2latent(pipe, image, device, torch_dtype).to(torch.float32)
 
-    # Load mask based on dataset
+    # Load mask based on dataset or from mask_path
     if args.dataset_name == "BrushBench":
         mask_image = Image.open(args.mask_path)
         mask = image_to_latent_mask(mask_image, original_target_image.shape, device, torch.float32)
@@ -75,6 +88,13 @@ if __name__ == '__main__':
         mask = torch.load("setup/FFHQ_mask.pt").to(device)
     elif args.dataset_name == "DIV2K":
         mask = torch.load("setup/DIV2K_mask.pt").to(device)
+    elif args.dataset_name is None:
+        # Load mask from provided path (can be .pt tensor or image file)
+        if args.mask_path.endswith('.pt'):
+            mask = torch.load(args.mask_path).to(device)
+        else:
+            mask_image = Image.open(args.mask_path)
+            mask = image_to_latent_mask(mask_image, original_target_image.shape, device, torch.float32)
     else:
         raise ValueError(f"Unknown dataset: {args.dataset_name}")
 
