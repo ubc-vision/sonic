@@ -44,7 +44,7 @@ Given a nearest-pixel inpainted image (left) and its corresponding prompt, we ca
 <hr>
 
 ## Code Release
-- <input type="checkbox" checked> Inpainting code with sample images and prompts
-- <input type="checkbox"> Environment setup guide
-- <input type="checkbox"> Metrics code from FLAIR and BrushNet
+- ✅ Inpainting code with sample images and prompts
+- ⬜ Environment setup guide
+- ⬜ Metrics code from FLAIR and BrushNet
 
