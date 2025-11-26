@@ -589,6 +589,13 @@ video {
     width: 60% !important;
   }
 
+  /* Juxtapose comparisons - stack vertically on mobile */
+  .hero.is-small .container > div[style*="display: flex"] {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center;
+  }
+
   /* Video comparisons */
   .masked-gt-video {
     width: 90% !important;
