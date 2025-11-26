@@ -149,7 +149,7 @@ python metrics/perceptual_metrics.py \
 
 ## Citation
 ```
-@misc{baek2025sonicspectraloptimizationnoise,
+@article{baek2025sonicspectraloptimizationnoise,
       title={SONIC: Spectral Optimization of Noise for Inpainting with Consistency}, 
       author={Seungyeon Baek and Erqun Dong and Shadan Namazifard and Mark J. Matthews and Kwang Moo Yi},
       year={2025},
