@@ -589,15 +589,6 @@ video {
     width: 60% !important;
   }
 
-  /* Juxtapose comparisons - stack vertically on mobile */
-  .juxtapose-comparison-grid {
-    flex-direction: column !important;
-    gap: 2rem !important;
-    align-items: center;
-  }
-
-  /* Let juxtapose handle its own sizing */
-
   /* Video comparisons */
   .masked-gt-video {
     width: 90% !important;
