@@ -404,21 +404,29 @@ video {
   padding-right: 0.1rem;
 }
 
+/* Spatial-Spectral comparison section */
+.spatial-spectral-comparison {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.spatial-spectral-comparison .column img {
+  width: 100%;
+  height: auto;
+}
+
+.reconstruction-wrapper {
+  padding: 0.25rem;
+  margin-top: 0.25rem;
+}
+
+.reconstruction-wrapper img {
+  width: 80% !important;
+}
+
 /* Add larger gap between spatial (columns 1,2) and spectral (columns 3,4) sections */
-.spatial-spectral-section .column:nth-child(3) {
+.spectral-separator {
   margin-left: 4rem !important;
-}
-
-/* Specifically reduce padding for reconstruction columns and make videos smaller */
-.spatial-spectral-section .column:nth-child(2) div,
-.spatial-spectral-section .column:nth-child(4) div {
-  padding: 0.1rem !important;
-  margin-top: 0.1rem !important;
-}
-
-.spatial-spectral-section .column:nth-child(2) img,
-.spatial-spectral-section .column:nth-child(4) img {
-  width: 90% !important;
 }
 
 /* Custom labels for juxtapose sliders */
@@ -447,6 +455,25 @@ video {
   right: 10px;
 }
 
+/* Juxtapose comparison grid */
+.juxtapose-comparison-grid {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.juxtapose-comparison-item {
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.juxtapose-comparison-item .juxtapose {
+  width: 300px;
+  margin: 0 auto;
+}
+
 /* Consistent horizontal margins for all sections - 75% of screen width */
 .container.is-max-desktop,
 .spatial-spectral-section,
@@ -456,4 +483,244 @@ video {
   margin-right: auto !important;
   padding-left: 1.5rem !important;
   padding-right: 1.5rem !important;
+}
+
+/* ================================
+   MOBILE RESPONSIVE STYLES
+   ================================ */
+
+/* Tablet and below */
+@media screen and (max-width: 1024px) {
+  .container.is-max-desktop,
+  .spatial-spectral-section,
+  .hero .container {
+    max-width: 90vw !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .carousel-section-description {
+    max-width: 95% !important;
+  }
+
+  /* Fix author blocks to wrap properly */
+  .publication-authors .author-block {
+    display: inline;
+    white-space: normal;
+  }
+}
+
+/* Mobile devices */
+@media screen and (max-width: 768px) {
+  /* Container adjustments */
+  .container.is-max-desktop,
+  .spatial-spectral-section,
+  .hero .container {
+    max-width: 100vw !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Title and text sizing */
+  .title.is-1 {
+    font-size: 1.75rem !important;
+  }
+
+  .publication-title {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .is-size-5 {
+    font-size: 0.9rem !important;
+  }
+
+  .is-size-6 {
+    font-size: 0.85rem !important;
+  }
+
+  /* Button adjustments */
+  .publication-links .link-block {
+    display: block;
+    margin: 0.5rem 0 !important;
+  }
+
+  .publication-links .button {
+    width: 100%;
+    margin: 0.25rem 0 !important;
+  }
+
+  /* Image and teaser adjustments */
+  .teaser .hero-body {
+    padding-top: 0;
+    padding-bottom: 1.5rem;
+  }
+
+  /* Carousel and section headers */
+  .carousel-section-header {
+    font-size: 1.5rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .carousel-item-caption,
+  .carousel-section-description {
+    font-size: 0.9rem !important;
+    text-align: left !important;
+    max-width: 100% !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Spatial vs Spectral section - stack vertically */
+  .spatial-spectral-section .columns.is-gapless,
+  .spatial-spectral-comparison {
+    display: flex;
+    flex-direction: column !important;
+  }
+
+  .spatial-spectral-section .column,
+  .spatial-spectral-comparison .column {
+    width: 100% !important;
+    margin-left: 0 !important;
+    margin-bottom: 1.5rem;
+    padding: 0 !important;
+  }
+
+  .spectral-separator {
+    margin-left: 0 !important;
+    margin-top: 2rem !important;
+    padding-top: 1.5rem !important;
+    border-top: 2px solid #e0e0e0;
+  }
+
+  .spatial-spectral-section .column img,
+  .spatial-spectral-comparison .column img {
+    width: 100% !important;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+  }
+
+  .reconstruction-wrapper {
+    margin-top: 1rem !important;
+  }
+
+  .reconstruction-wrapper img {
+    width: 60% !important;
+  }
+
+  /* Juxtapose comparisons - stack vertically on mobile */
+  .juxtapose-comparison-grid {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    align-items: center;
+  }
+
+  .juxtapose-comparison-item {
+    width: 100% !important;
+    max-width: 400px !important;
+  }
+
+  .juxtapose-comparison-item .juxtapose {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .juxtapose {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+  }
+
+  /* Video comparisons */
+  .masked-gt-video {
+    width: 90% !important;
+    max-width: 100% !important;
+  }
+
+  .video-comparison canvas {
+    max-width: 90% !important;
+  }
+
+  /* Button row */
+  .button-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .button-row a {
+    width: 100% !important;
+    text-align: center;
+  }
+
+  .spacer {
+    display: none;
+  }
+
+  /* Interpolation slider */
+  .slider-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .slider-label-left,
+  .slider-label-right {
+    margin: 0 !important;
+    font-size: 0.9rem;
+  }
+
+  /* Abstract and content sections */
+  .column.is-four-fifths {
+    width: 100% !important;
+  }
+
+  .content.has-text-justified {
+    text-align: left !important;
+  }
+
+  /* Footer */
+  footer.footer {
+    padding: 2rem 1rem !important;
+  }
+
+  footer.footer p {
+    font-size: 0.85rem !important;
+  }
+}
+
+/* Extra small mobile devices */
+@media screen and (max-width: 480px) {
+  .title.is-1,
+  .publication-title {
+    font-size: 1.25rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .carousel-section-header {
+    font-size: 1.25rem !important;
+  }
+
+  .carousel-item-caption,
+  .carousel-section-description {
+    font-size: 0.85rem !important;
+  }
+
+  .publication-links .button {
+    font-size: 0.9rem !important;
+    padding: 0.5rem 1rem !important;
+  }
+
+  /* Make images more mobile-friendly */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  /* Slider adjustments */
+  .interpolation-panel {
+    padding: 0.5rem !important;
+  }
+
+  #interpolation-image-wrapper {
+    padding: 0 !important;
+  }
 }

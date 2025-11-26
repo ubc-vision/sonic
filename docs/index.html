@@ -282,21 +282,21 @@
               </p>
 
               <!-- Learning Rate 0.05 / 3.0 -->
-              <div class="columns is-gapless is-centered" style="margin-top: 3rem; margin-bottom: 2rem;">
+              <div class="columns is-gapless is-centered spatial-spectral-comparison">
                 <div class="column is-3 has-text-centered">
-                  <img src="static/loss_curves/spatial_0.05.gif" alt="Spatial Loss 0.05" style="width: 100%;">
+                  <img src="static/loss_curves/spatial_0.05.gif" alt="Spatial Loss 0.05">
                 </div>
                 <div class="column is-3 has-text-centered">
-                  <div style="padding: 0.25rem; margin-top: 0.25rem;">
-                    <img src="static/x0_reconstructions/x0_hat_x_0_hat_spatial_0.05.gif" alt="Spatial Reconstruction 0.05" style="width: 80%;">
+                  <div class="reconstruction-wrapper">
+                    <img src="static/x0_reconstructions/x0_hat_x_0_hat_spatial_0.05.gif" alt="Spatial Reconstruction 0.05">
                   </div>
                 </div>
-                <div class="column is-3 has-text-centered">
-                  <img src="static/loss_curves/spectral_3.0.gif" alt="Spectral Loss 3.0" style="width: 100%;">
+                <div class="column is-3 has-text-centered spectral-separator">
+                  <img src="static/loss_curves/spectral_3.0.gif" alt="Spectral Loss 3.0">
                 </div>
                 <div class="column is-3 has-text-centered">
-                  <div style="padding: 0.25rem; margin-top: 0.25rem;">
-                    <img src="static/x0_reconstructions/x0_hat_x_0_hat_spectral_3.0.gif" alt="Spectral Reconstruction 3.0" style="width: 80%;">
+                  <div class="reconstruction-wrapper">
+                    <img src="static/x0_reconstructions/x0_hat_x_0_hat_spectral_3.0.gif" alt="Spectral Reconstruction 3.0">
                   </div>
                 </div>
               </div>
@@ -315,9 +315,9 @@
           <p class="carousel-section-description" style="text-align: center;">
             For additional qualitative comparisons, please refer to the <a href="./static/pdf/main.pdf" style="color: #3273dc; text-decoration: none; font-weight: bold;"><strong>Supplementary Materials</strong></a>.
           </p>
-          <div style="display: flex; gap: 20px; justify-content: center;">
-            <div style="width: 300px; text-align: center; position: relative;">
-              <div class="juxtapose" style="width: 300px;">
+          <div class="juxtapose-comparison-grid">
+            <div class="juxtapose-comparison-item">
+              <div class="juxtapose">
                 <img src="static/images/comparisons/ffhq/00363_brushnet.jpg" />
                 <img src="static/images/comparisons/ffhq/00363_ours.jpg" />
               </div>
@@ -325,8 +325,8 @@
                 FFHQ
               </div>
             </div>
-            <div style="width: 300px; text-align: center; position: relative;">
-              <div class="juxtapose" style="width: 300px;">
+            <div class="juxtapose-comparison-item">
+              <div class="juxtapose">
                 <img src="static/images/comparisons/div2k/00561_flair.jpg" />
                 <img src="static/images/comparisons/div2k/00560_ours.jpg" />
               </div>
@@ -334,8 +334,8 @@
                 DIV2K
               </div>
             </div>
-            <div style="width: 300px; text-align: center; position: relative;">
-              <div class="juxtapose" style="width: 300px;">
+            <div class="juxtapose-comparison-item">
+              <div class="juxtapose">
                 <img src="static/images/comparisons/brushbench/000000304_flowdps.jpg" />
                 <img src="static/images/comparisons/brushbench/00304_ours.jpg" />
               </div>
@@ -358,19 +358,19 @@
           </p>
           <br>
           <!-- Masked Ground Truth Video -->
-          <div class="masked-gt-container" style="display: flex; flex-direction: column; align-items: center; margin: 2rem auto; width: 100%;">
-            <video class="masked-gt-video" muted loop autoplay playsinline style="width: 499px; max-width: 90%; height: auto; display: block; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); background: #000;">
+          <div class="masked-gt-container">
+            <video class="masked-gt-video" muted loop autoplay playsinline>
               <source src="static/videos/masked_gt.mp4" type="video/mp4">
               Your browser does not support the video tag.
             </video>
-            <div class="masked-gt-caption" style="text-align: center; margin-top: 0.75rem; color: #666;">Masked Ground Truth</div>
+            <div class="masked-gt-caption">Masked Ground Truth</div>
           </div>
 
           <!-- First Video Comparison Container -->
           <div class="video-comparison-container">
             <div class="video-comparison">
               <div class="video-loading">Loading video</div>
-              <video id="compVideo1" onloadeddata="resizeAndPlay(this)" muted loop playsinline preload="auto">
+              <video id="compVideo1" onloadeddata="resizeAndPlay(this)" muted loop autoplay playsinline preload="auto">
                 <source src="static/videos/combined_comparison.mp4" type="video/mp4">
                 Your browser does not support the video tag.
               </video>

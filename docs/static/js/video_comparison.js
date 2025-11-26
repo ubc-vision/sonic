@@ -135,7 +135,6 @@ function resizeAndPlay(element) {
 
     cv.width = element.videoWidth/2;
     cv.height = element.videoHeight;
-    element.play();
     element.style.height = "0px";  // Hide video without stopping it
 
     // Remove loading indicator
