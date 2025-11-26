@@ -687,7 +687,7 @@ video {
   }
 
   /* Make images more mobile-friendly */
-  img {
+  img:not(.juxtapose img) {
     max-width: 100% !important;
     height: auto !important;
   }
