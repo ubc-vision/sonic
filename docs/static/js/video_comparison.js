@@ -170,38 +170,54 @@ function resizeAndPlay(element) {
     playVids(element.id);
 }
 
-// Add a user interaction fallback for Safari
-document.addEventListener('DOMContentLoaded', function() {
-    var compVideo = document.getElementById('compVideo1');
-    var maskedVideo = document.querySelector('.masked-gt-video');
+// Setup videos immediately when script loads
+(function() {
+    function setupVideos() {
+        var compVideo = document.getElementById('compVideo1');
+        var maskedVideo = document.querySelector('.masked-gt-video');
 
-    // Ensure both videos are set up for Safari
-    var videos = [compVideo, maskedVideo].filter(function(v) { return v !== null; });
+        // Ensure both videos are set up for Safari
+        var videos = [compVideo, maskedVideo].filter(function(v) { return v !== null; });
 
-    videos.forEach(function(video) {
-        if (video) {
-            video.muted = true;
-            video.setAttribute('muted', '');
-            video.setAttribute('playsinline', '');
-        }
-    });
-
-    // Try to play on any user interaction if autoplay failed
-    var playOnInteraction = function() {
         videos.forEach(function(video) {
-            if (video && video.paused) {
-                video.play().catch(function(e) {
-                    console.log('Play on interaction failed:', e);
-                });
+            if (video) {
+                video.muted = true;
+                video.setAttribute('muted', '');
+                video.setAttribute('playsinline', '');
+
+                // Try to play immediately
+                if (video.readyState >= 2) {
+                    video.play().catch(function() {
+                        // Silent fail, will be handled by interaction
+                    });
+                }
             }
         });
-        // Remove listeners after first successful interaction
-        document.removeEventListener('touchstart', playOnInteraction);
-        document.removeEventListener('click', playOnInteraction);
-        document.removeEventListener('scroll', playOnInteraction);
-    };
 
-    document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
-    document.addEventListener('click', playOnInteraction, { once: true });
-    document.addEventListener('scroll', playOnInteraction, { once: true, passive: true });
-});
+        // Try to play on any user interaction if autoplay failed
+        var playOnInteraction = function() {
+            videos.forEach(function(video) {
+                if (video && video.paused) {
+                    video.play().catch(function(e) {
+                        console.log('Play on interaction failed:', e);
+                    });
+                }
+            });
+            // Remove listeners after first successful interaction
+            document.removeEventListener('touchstart', playOnInteraction);
+            document.removeEventListener('click', playOnInteraction);
+            document.removeEventListener('scroll', playOnInteraction);
+        };
+
+        document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true });
+        document.addEventListener('click', playOnInteraction, { once: true });
+        document.addEventListener('scroll', playOnInteraction, { once: true, passive: true });
+    }
+
+    // Run setup as early as possible
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setupVideos);
+    } else {
+        setupVideos();
+    }
+})();

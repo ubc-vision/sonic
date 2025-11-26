@@ -455,25 +455,6 @@ video {
   right: 10px;
 }
 
-/* Juxtapose comparison grid */
-.juxtapose-comparison-grid {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.juxtapose-comparison-item {
-  width: 300px;
-  text-align: center;
-  position: relative;
-}
-
-.juxtapose-comparison-item .juxtapose {
-  width: 300px;
-  margin: 0 auto;
-}
-
 /* Consistent horizontal margins for all sections - 75% of screen width */
 .container.is-max-desktop,
 .spatial-spectral-section,
