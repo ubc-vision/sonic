@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
     # optimize spectral noise with Adam
     epsilon_freq = torch.fft.rfftn(epsilon, s=epsilon.shape[-2:], dim=(-2, -1))
-    epsilon_optim_target = torch.nn.Parameter(epsilon_freq.detach().clone())
+    epsilon_optim_target = torch.nn.Parameter(epsilon_freq.detach().clone(), requires_grad=True)
     optimizer = torch.optim.Adam([epsilon_optim_target], lr=args.learning_rate)
 
     # optimization loop
