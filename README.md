@@ -62,7 +62,7 @@ The codebase was tested with PyTorch 2.7.1+cu128
 
 For inpainting only:
 ```bash
-pip install diffusers==0.31.0 transformers==4.46.3 accelerate==1.9.0 pillow==10.4.0 numpy==1.26.4
+pip install diffusers==0.31.0 transformers==4.46.3 accelerate==1.9.0 pillow==10.4.0 numpy==1.26.4 protobuf==6.31.1 sentencepiece==0.2.0
 ```
 
 For metrics evaluation (optional):
