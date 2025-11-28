@@ -56,12 +56,13 @@ cd sonic
 2. **Install PyTorch**
 
 Install PyTorch with CUDA support. Visit [https://pytorch.org](https://pytorch.org) for installation instructions.
+The codebase was tested with PyTorch 2.7.1+cu128
 
 3. **Install required packages**
 
 For inpainting only:
 ```bash
-pip install diffusers transformers accelerate pillow numpy
+pip install diffusers==0.31.0 transformers==4.46.3 accelerate==1.9.0 pillow==10.4.0 numpy==1.26.4
 ```
 
 For metrics evaluation (optional):
