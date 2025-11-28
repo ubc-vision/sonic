@@ -56,7 +56,7 @@ cd sonic
 2. **Install PyTorch**
 
 Install PyTorch with CUDA support. Visit [https://pytorch.org](https://pytorch.org) for installation instructions.
-The codebase was tested with PyTorch 2.7.1+cu128
+The codebase was tested with PyTorch 2.7.1+cu128, and 2.9.1+cu128.
 
 3. **Install required packages**
 
