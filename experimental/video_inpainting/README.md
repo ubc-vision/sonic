@@ -9,16 +9,8 @@
     <td align="center">Inpainted Output</td>
   </tr>
   <tr>
-    <td>
-      <video width="320" controls loop muted playsinline>
-          https://github.com/user-attachments/assets/941715a3-49e0-4e41-b0ad-9d75648f74b7
-      </video>
-    </td>
-    <td>
-      <video width="320" controls loop muted playsinline>
-          https://github.com/user-attachments/assets/83529d54-d60f-4ae9-985d-f5534e89a229
-      </video>
-    </td>
+    <td><img src="video_samples/masked_videos/flower_masked.gif" width="320"></td>
+    <td><img src="video_inpaint_output_samples/flower_output.gif" width="320"></td>
   </tr>
 </table>
 
