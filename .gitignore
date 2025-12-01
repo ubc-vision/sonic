@@ -1,3 +1,4 @@
 .DS_Store
 inpaint_results/
 __pycache__/
+experimental/video_inpainting/video_results/
