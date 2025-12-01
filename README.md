@@ -113,7 +113,7 @@ Results are saved to `inpaint_results/{dataset_name}_{image_name}_steps{step_num
 - ✅ Inpainting code with sample images and prompts
 - ✅ Environment setup guide
 - ✅ Metrics code
-- ⬜ (Experimental) Wan 2.1 code update
+- ✅ (Experimental) Wan 2.1 code update
 
 ## Citation
 ```
