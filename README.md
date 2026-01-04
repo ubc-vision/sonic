@@ -114,6 +114,7 @@ Results are saved to `inpaint_results/{dataset_name}_{image_name}_steps{step_num
 - ✅ Environment setup guide
 - ✅ Metrics code
 - ✅ (Experimental) Wan 2.1 code update
+- ⬜ (To be updated!) Video inpainting examples with Wan2.1
 
 ## Citation
 ```
