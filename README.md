@@ -6,16 +6,16 @@
 
 
 <span class="author-block">
-  <a href="">Seungyeon Baek</a>,
+  <a href="https://github.com/syeonb">Seungyeon Baek</a>,
 </span>
 <span class="author-block">
-  <a href="">Erqun Dong</a>,
+  <a href="https://github.com/DEQDON">Erqun Dong</a>,
 </span>
 <span class="author-block">
-  <a href="">Shadan Namazifard</a>,
+  <a href="https://github.com/shadannamazi">Shadan Namazifard</a>,
 </span>
 <span class="author-block">
-  <a href="">Mark J. Matthews</a>,
+  <a href="https://scholar.google.com/citations?user=glZNrscAAAAJ&hl=en">Mark J. Matthews</a>,
 </span>
 <span class="author-block">
   <a href="https://www.cs.ubc.ca/~kmyi/">Kwang Moo Yi</a>
@@ -114,7 +114,6 @@ Results are saved to `inpaint_results/{dataset_name}_{image_name}_steps{step_num
 - ✅ Environment setup guide
 - ✅ Metrics code
 - ✅ (Experimental) Wan 2.1 code update
-- ⬜ (To be updated!) Video inpainting examples with Wan2.1
 
 ## Citation
 ```
