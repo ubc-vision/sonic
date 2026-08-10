@@ -1,5 +1,7 @@
 # SONIC: Spectral Optimization of Noise for Inpainting with Consistency
 
+**Accepted at ECCV 2026** 🎉
+
 [![button](https://img.shields.io/badge/Project%20Website-orange?style=for-the-badge)](https://ubc-vision.github.io/sonic/)
 [![button](https://img.shields.io/badge/Paper-blue?style=for-the-badge)](https://arxiv.org/abs/2511.19985)
 
